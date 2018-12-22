@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 '''
 MIT License
 
@@ -24,27 +25,28 @@ SOFTWARE.
 
 
 import boto3
-import time
-import requests
-import json
 import datetime
+import json
+import os
+import requests
+import time
 
 
 # Enter your 12-digit AWS Account ID and AWS region for SecurityHub
 # https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html#FindingYourAWSId
-AWS_ACCOUNT_ID = '<YOUR_ACCOUNT_ID>'
+AWS_ACCOUNT_ID = os.environ.get('AWS_ACCOUNT_ID', '123456789012')
 
 
 # Enter your AWS region for SecurityHub
 # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
-AWS_REGION = '<YOUR_AWS_REGION>'
+AWS_REGION = os.environ.get('AWS_REGION', 'us-east-1')
 
 
 # Enter your Tenable.io Access Key And Secret Key below.
 # These are generated from the "API Keys" tab under the "My Account" page.
 # https://cloud.tenable.com/api#/authorization
-ACCESS_KEY = '<YOUR_ACCESS_KEY>'
-SECRET_KEY = '<YOUR_SECRET_KEY>'
+TENABLE_ACCESS_KEY = os.environ.get('TENABLE_ACCESS_KEY', 'access key goes here')
+TENABLE_SECRET_KEY = os.environ.get('TENABLE_SECRET_KEY', 'secret key goes here')
 
 
 # Script settings
@@ -54,7 +56,7 @@ BATCH_SIZE = 100
 DATE_RANGE = str(30)
 GENERATOR_ID = 'tenable-plugin-'
 HEADERS = {
-    'X-ApiKeys': 'accessKey=' + ACCESS_KEY + '; secretKey=' + SECRET_KEY
+    'X-ApiKeys': 'accessKey=' + TENABLE_ACCESS_KEY + '; secretKey=' + TENABLE_SECRET_KEY
 }
 
 
