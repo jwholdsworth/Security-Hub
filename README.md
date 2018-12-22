@@ -10,24 +10,18 @@ pip install boto3 requests
 3.7+
 
 ### Configuration
-In order to use this script, you must first Subscribe to Tenable.io as a provider in AWS SecurityHub.
 
-Once subscribed, update the following setting in the script with your [AWS Account ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html#FindingYourAWSId):
+Now run the script as per the example below, passing in the following 4 environment variables:
 
-    AWS_ACCOUNT_ID = '<YOUR_ACCOUNT_ID>'
+* AWS_ACCOUNT_ID (available [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html#FindingYourAWSId))
+* AWS_REGION (available [here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html))
+* TENABLE_ACCESS_KEY (available [here](https://cloud.tenable.com/api#/authorization))
+* TENABLE_SECRET_KEY (available [here](https://cloud.tenable.com/api#/authorization))
 
-Next, update the following setting with your [AWS Region](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html):
-
-    AWS_REGION = '<YOUR_AWS_REGION>'
-
-Then, update the following settings with your [Tenable.io](https://cloud.tenable.com/) API keys:
-
-    ACCESS_KEY = '<YOUR_ACCESS_KEY>'
-    SECRET_KEY = '<YOUR_SECRET_KEY>'
-
-### Run the script
-Once configuration is complete, run the following command and--upon completion--you will see vulnerabilities from Tenable.io appear in your SecurityHub findings.
+Example:
 
 ```
-./python3 tenableio2securityhub.py
+AWS_ACCOUNT_ID=123456789012 AWS_REGION=eu-west-1 TENABLE_ACCESS_KEY=123456 TENABLE_SECRET_KEY=abcdef python3 ./tenableio2securityhub.py
 ```
+
+When the command completes, you will see vulnerabilities from Tenable.io appear in your SecurityHub findings.
